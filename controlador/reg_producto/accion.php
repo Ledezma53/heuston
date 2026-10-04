@@ -3,21 +3,21 @@
 
    include_once("../../modelo/reg_producto.php");
     $obj_reg_producto= new reg_producto();
-
         /*---- Activar y desactivar Estado ----$_SESSION["idUser"]*/
 
           
 
          /*---- Crear y actualizar marca comercial ----*/
          if($_REQUEST["id"]>0){
-
+                $obj_reg_producto->id_producto=intval($_REQUEST["id"]);
+               $obj_reg_producto->consult();
                $obj_reg_producto->nombre=strClean($_REQUEST["txt_producto"]);
                $obj_reg_producto->precio=strClean($_REQUEST["txt_precio"]);
                $obj_reg_producto->fecha_caducidad=strClean($_REQUEST["txt_f_c"]);                           
                $obj_reg_producto->categoria=strClean($_REQUEST["txt_cat"]);
                $obj_reg_producto->stock=strClean($_REQUEST["txt_stock"]);
-               $obj_reg_producto->id_producto=intval($_REQUEST["id"]);
-
+               
+                 
                if (isset($_FILES["txt_imagen"]) && $_FILES["txt_imagen"]["error"] == 0) {
 
                     $nombre_imagen = $_FILES["txt_imagen"]["name"];
@@ -36,6 +36,7 @@
 
                     $obj_reg_producto->imagen = "archivo/imagenes/" . $nuevo_nombre;
                 }
+
                if ($obj_reg_producto->nombre == '' ) {
                 echo "error_datos";
                 return false;

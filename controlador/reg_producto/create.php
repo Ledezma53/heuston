@@ -47,16 +47,31 @@ $obj_reg_producto->consult();
         </div>
     </div>
     <div class="col-4">
-        <label for="txt_imagen">Imagen del producto<i class="text-danger" title="Ingrese imagen">*</i>
-        </label><label class="text-danger msj_txt_imagen"></label>
+        <label for="txt_imagen">
+            Imagen del producto
+            <i class="text-danger" title="Ingrese imagen">*</i>
+        </label>
+
+        <label class="text-danger msj_txt_imagen"></label>
+
         <div class="input-group mb-2">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-image"></i></span>
+                <span class="input-group-text">
+                    <i class="fas fa-image"></i>
+                </span>
             </div>
-            <input type="file" class="form-control" id="txt_imagen" 
-            name="txt_imagen" accept="image/*">
 
+            <input type="file" class="form-control" id="txt_imagen" name="txt_imagen" accept="image/*">
         </div>
+
+        <?php if($obj_reg_producto->imagen != ""){ ?>
+            <div class="mt-2">
+                <img src="../<?php echo $obj_reg_producto->imagen; ?>"
+                    width="100"
+                    height="100"
+                    style="object-fit:cover;">
+            </div>
+        <?php } ?>
     </div>
     <div class="col-4">
         <label for="txt_cat"> Categoria <i class="text-danger" title="Ingrese Nombre de categoria">*</i></label>

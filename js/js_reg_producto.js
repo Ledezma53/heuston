@@ -1,3 +1,17 @@
+
+function listarProductos()
+{
+    $.get(
+        "../controlador/reg_producto/list.php",
+        function(data)
+        {
+            $("#lista_productos").html(data);
+        }
+    );
+}
+$(document).ready(function(){
+    listarProductos();
+});
 /* ------ Crear y actualizar ------*/
 $(document).on('click', '#btn_save', function() {
     
@@ -12,7 +26,7 @@ $(document).on('click', '#btn_save', function() {
     var strCat = document.querySelector('#txt_cat').value;
     var strStock = document.querySelector('#txt_stock').value;
     
-    if (strNombre == '' || strprecio == '' || strf_c == '' || strImagen == '' || 
+    if (strNombre == '' || strprecio == '' || strf_c == '' || 
     strCat == '' || strStock == '') 
     {
         
@@ -35,18 +49,16 @@ $(document).on('click', '#btn_save', function() {
         processData: false,
         contentType: false,
         success:function(data){   
-            alert(data.trim());
-            alert("hoolaaaa");
             if(data.trim()=="true_create"){               
                 $("#form_producto").empty();
                 $("#modal-form-producto").modal("hide");
-                toastr.success("Se creó el productoliado");
-                
+                toastr.success("Se creó el producto");
+                listarProductos()
             }else if(data.trim()=="true_update"){
                 $("#form_producto").empty();
                 $("#modal-form-producto").modal("hide");
                 toastr.success("Se actualizó el productoliado");
-                              
+                listarProductos()              
             }else if(data.trim()=="incorrectos"){
                 toastr.error("Por favor valide los campos los datos ingresados son incorrectos.");
             }else{
@@ -78,8 +90,7 @@ $(document).on('click', '.new-modal-producto', function() {
         $("#modal-form-producto").modal("show");
     })
 });
-/* ------Modal SHOW vista------*/
-
+/* ------ list------*/
 
 
 /* ------ Activar Estado------*/

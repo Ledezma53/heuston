@@ -19,6 +19,22 @@ class reg_producto extends cn{
         mysqli_close($this->f_cn());
         return $rs;
     }
+    public function update()
+    {
+        $query = "UPDATE producto SET 
+                    nombre = '$this->nombre',
+                    precio = $this->precio,
+                    fecha_caducidad = '$this->fecha_caducidad',
+                    imagen = '$this->imagen',
+                    categoria = '$this->categoria',
+                    stock = $this->stock
+                WHERE id_producto = $this->id_producto";
+
+        $rs = mysqli_query($this->f_cn(), $query);
+        mysqli_close($this->f_cn());
+
+        return $rs;
+    }
 
     public  function combo()
     {

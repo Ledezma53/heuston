@@ -15,6 +15,7 @@
   <title>Heustonn</title>
 
   <!-- slider stylesheet -->
+   
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
@@ -29,6 +30,7 @@
   <link href="../css/responsive.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
   <link rel="stylesheet" href="../plugins/toastr/toastr.min.css">
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
 </head>
 
 <body>
@@ -103,6 +105,14 @@
             <!-- /.modal-dialog -->
         </div>
         <!-- FIN MODAL TIPO producto -->
+         <!-- mostrar tabla producto -->
+      <div class="container mt-4">
+
+          <h3>Lista de productos</h3>
+
+          <div id="lista_productos"></div>
+      </div>
+      <!-- mostrar tabla producto cerrrar -->
   <!-- end about section -->
 
 
