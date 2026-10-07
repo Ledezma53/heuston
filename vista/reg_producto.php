@@ -114,8 +114,6 @@
       </div>
       <!-- mostrar tabla producto cerrrar -->
   <!-- end about section -->
-
-
   <!-- info section -->
   <section class="info_section layout_padding">
     <div class="container">

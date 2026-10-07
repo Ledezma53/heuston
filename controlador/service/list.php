@@ -8,45 +8,103 @@ $rs = $obj_reg_producto->list();
 
 ?>
 
-<table class="table table-bordered table-hover">
+<div class="row">
 
-    <thead class="thead-dark">
-        <tr>
-            <th>ID</th>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Fecha caducidad</th>
-            <th>Imagen</th>
-            <th>Categoría</th>
-            <th>Stock</th>
-        </tr>
-    </thead>
+    <?php while($fila = mysqli_fetch_array($rs)){ ?>
 
-    <tbody>
+        <div class="col-md-4 mb-4">
 
-        <?php while($fila=mysqli_fetch_array($rs)){ ?>
+            <div class="card h-100 text-center">
 
-        <tr>
-            <td><?php echo $fila["id_producto"]; ?></td>
-            <td><?php echo $fila["nombre"]; ?></td>
-            <td><?php echo $fila["precio"]; ?></td>
-            <td><?php echo $fila["fecha_caducidad"]; ?></td>
+                <!-- Imagen -->
+                <div class="card-body">
 
-            <td>
-                <?php if($fila["imagen"] != ""){ ?>
-                    <img src="../<?php echo $fila["imagen"]; ?>"
-                         width="60"
-                         height="60"
-                         style="object-fit:cover;">
-                <?php } ?>
-            </td>
+                    <?php if($fila["imagen"] != ""){ ?>
 
-            <td><?php echo $fila["categoria"]; ?></td>
-            <td><?php echo $fila["stock"]; ?></td>
-        </tr>
+                        <img src="../<?php echo $fila["imagen"]; ?>"
+                             class="img-fluid"
+                             style="width: 180px; height: 150px; object-fit: contain;">
 
-        <?php } ?>
+                    <?php } else { ?>
 
-    </tbody>
+                        <div style="width:180px; height:150px; margin:auto;">
+                            Sin imagen
+                        </div>
 
-</table>
+                    <?php } ?>
+
+                    <!-- Nombre -->
+                    <h5 class="card-title mt-2">
+                        <?php echo $fila["nombre"]; ?>
+                    </h5>
+
+                    <!-- Precio -->
+                    <p style="color:red;">
+                        Precio: $<?php echo $fila["precio"]; ?>
+                    </p>
+
+                    <!-- Botón -->
+                    <button type="button"
+                            class="btn btn-outline-danger btn-sm btn-carrito"
+                            data-id="<?php echo $fila["id_producto"]; ?>"
+                            data-nombre="<?php echo htmlspecialchars($fila["nombre"]); ?>"
+                            data-precio="<?php echo $fila["precio"]; ?>">
+
+                        AÑADIR AL CARRITO
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    <?php } ?>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- CARRITO -->
+<!-- ========================= -->
+
+<div class="row mt-4">
+
+    <div class="col-md-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h3>Tu carrito</h3>
+            </div>
+
+            <div class="card-body">
+
+                <div id="cart-items">
+
+                    <p>Tu carrito está vacío</p>
+
+                </div>
+
+                <hr>
+
+                <h4>
+                    Total: $ <span id="cart-total">0</span>
+                </h4>
+
+                <button type="button"
+                        id="checkout"
+                        class="btn btn-success">
+
+                    Procesar compra
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
