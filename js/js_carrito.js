@@ -62,9 +62,27 @@ document.addEventListener('click', function(e) {
         })
         .then(response => response.json())
         .then(data => {
-            alert(data.message);
-            cart = [];
-            updateCart();
+
+            if (data.success) {
+
+                alert(
+                    data.message +
+                    "\nNúmero de venta: " +
+                    data.id_venta
+                );
+
+                // Abrir el PDF
+                window.open(
+                    '../controlador/service/generar_pdf.php?id_venta=' + data.id_venta,
+                    '_blank'
+                );
+                // Vaciar carrito
+                cart = [];
+                updateCart();
+            } else {
+                alert(data.message);
+            }
+
         })
         .catch(error => {
             console.error('Error:', error);
